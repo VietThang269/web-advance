@@ -1,6 +1,6 @@
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
-import { HomePageState } from 'app/pages/HomePage/slice/types';
+import { User } from 'store/app/user/types';
 
 /* 
   Because the redux-injectors injects your reducers asynchronously somewhere in your code
@@ -8,5 +8,5 @@ import { HomePageState } from 'app/pages/HomePage/slice/types';
 */
 export interface RootState {
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
-  homepage?: HomePageState;
+  user?: User;
 }

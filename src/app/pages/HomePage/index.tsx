@@ -4,28 +4,18 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHomepageSlice } from './slice';
-import { selectUsername } from './slice/selectors';
-import { AppShell, Footer, Header, Navbar } from '@mantine/core';
+import Header from 'app/components/Header';
+import Navbar from 'app/components/Navbar';
+import { AppShell, Text } from '@mantine/core';
+import Footer from 'app/components/Footer';
 
 export function HomePage() {
-  const [newData, setNewData] = React.useState<string>('');
   const { t, i18n } = useTranslation();
-  const { actions } = useHomepageSlice();
   const dispatch = useDispatch();
-
-  const username = useSelector(selectUsername);
-
-  const handleChange = () => {
-    dispatch(actions.changeUsername(newData));
-    setNewData('');
-  };
 
   const changeLanguage = () => {
     i18n.changeLanguage('vi');
   };
-
-  // const title = 'Trang chủ';
 
   return (
     <>
@@ -36,21 +26,9 @@ export function HomePage() {
 
       <AppShell
         padding="md"
-        navbar={
-          <Navbar width={{ base: 300 }} height={'calc(100% - 60px)'} p="xs">
-            {/* Navbar content */}
-          </Navbar>
-        }
-        header={
-          <Header height={60} p="xs">
-            {/* Header content */}
-          </Header>
-        }
-        footer={
-          <Footer p="xs" height={60}>
-            {}
-          </Footer>
-        }
+        navbar={<Navbar />}
+        header={<Header />}
+        footer={<Footer />}
         styles={theme => ({
           main: {
             backgroundColor:
@@ -61,27 +39,8 @@ export function HomePage() {
         })}
       >
         {/* Your application here */}
+        <Text>Content</Text>
       </AppShell>
-
-      {/* <h1>{t('title')}</h1>
-      <h3>Trang chủ</h3>
-      <p>Username: {username?.username}</p>
-      <input
-        type="text"
-        value={newData}
-        onChange={e => setNewData(e.target.value)}
-      />
-      <button onClick={handleChange}>Change</button>
-
-      <select
-        value={i18n.language}
-        onChange={e => {
-          i18n.changeLanguage(e.target.value);
-        }}
-      >
-        <option value="en">en</option>
-        <option value="vi">vi</option>
-      </select> */}
     </>
   );
 }
