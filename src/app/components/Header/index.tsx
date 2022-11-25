@@ -41,13 +41,13 @@ export default function Header(props: Props) {
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Burger
             opened={props.open}
-            onClick={() => props.setOpen(o => !o)}
+            onClick={() => props.setOpen(prev => !prev)}
             size="sm"
             color="gray"
             mr="xl"
           />
         </MediaQuery>
-        {user?.user ? (
+        {user?.user?.id !== 0 ? (
           <Button variant="light" color="blue" onClick={handleLogout}>
             {t('logout')}
           </Button>

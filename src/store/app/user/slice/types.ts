@@ -4,7 +4,7 @@ export interface User {
   token: string;
   role: number;
   status: number;
-  // createTime:
+  createTime: number;
 }
 
 export interface UserState {

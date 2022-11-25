@@ -42,10 +42,9 @@ function* watchLoginFlow() {
         userActions.loginRequest.type,
       );
       yield fork(handleLogin, action.payload);
-    } else {
-      yield take(userActions.logout.type);
-      yield call(handleLogout);
     }
+    yield take(userActions.logout.type);
+    yield call(handleLogout);
   }
 }
 

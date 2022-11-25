@@ -3,8 +3,22 @@ import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import userSaga from './saga';
 import { PayLoadUser, User, UserState } from './types';
 
+// export const initialState: UserState = {
+//   user: JSON.parse(localStorage.getItem('user') || 'false') || undefined,
+//   error: 0,
+//   message: '',
+//   isLoading: false,
+// };
+
 export const initialState: UserState = {
-  user: JSON.parse(localStorage.getItem('user') || 'false') || undefined,
+  user: JSON.parse(localStorage.getItem('user') || 'false') || {
+    id: 0,
+    username: '',
+    token: '',
+    role: 0,
+    status: 0,
+    createTime: 0,
+  },
   error: 0,
   message: '',
   isLoading: false,
@@ -37,13 +51,27 @@ const slice = createSlice({
         message: string;
       }>,
     ) {
-      state.user = undefined;
+      state.user = {
+        id: 0,
+        username: '',
+        token: '',
+        role: 0,
+        status: 0,
+        createTime: 0,
+      };
       state.error = action.payload.error;
       state.message = action.payload.message;
       state.isLoading = false;
     },
     logout(state, action: PayloadAction<string>) {
-      state.user = undefined;
+      state.user = {
+        id: 0,
+        username: '',
+        token: '',
+        role: 0,
+        status: 0,
+        createTime: 0,
+      };
     },
   },
 });

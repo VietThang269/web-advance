@@ -45,11 +45,12 @@ export function LoginPage() {
 
   const handleLogin = (data: PayLoadUser) => {
     dispatch(userActions.loginRequest(data));
+    form.reset();
   };
 
   return (
     <>
-      {user?.user && <Navigate to={'/'} replace={true} />}
+      {user?.user?.id !== 0 && <Navigate to={'/'} replace={true} />}
 
       <Center
         h={'100vh'}
@@ -69,10 +70,19 @@ export function LoginPage() {
             },
           })}
         >
-          <Title order={1} mb={'10px'}>
+          <Title order={1} mb={'15px'}>
             {t('login')}
           </Title>
-          {user?.error !== 0 && <Text color="red">{user?.message}</Text>}
+          {user?.error !== 0 && (
+            <Alert
+              color="red"
+              sx={{
+                margin: '10px 0',
+              }}
+            >
+              {user?.message}
+            </Alert>
+          )}
           <form onSubmit={form.onSubmit(handleLogin)}>
             <Flex direction={'column'} gap={'1rem'}>
               <TextInput
