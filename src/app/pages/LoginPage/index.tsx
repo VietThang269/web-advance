@@ -37,9 +37,9 @@ export function LoginPage() {
 
     validate: {
       username: value =>
-        value.length < 1 ? 'Tên đăng nhập không thể bỏ trống' : null,
+        value.length < 1 ? <Text>{t('validateUsername')}</Text> : null,
       password: value =>
-        value.length < 1 ? 'Mật khẩu không thể bỏ trống' : null,
+        value.length < 1 ? <Text>{t('validatePassword')}</Text> : null,
     },
   });
 

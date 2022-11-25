@@ -15,7 +15,7 @@ export function HomePage() {
   const dispatch = useDispatch();
 
   const changeLanguage = () => {
-    i18n.changeLanguage('vi');
+    i18n.changeLanguage('en');
   };
 
   React.useEffect(() => {

@@ -28,6 +28,7 @@ export default function Navbar(props: Props) {
     >
       {data.map((item, index) => (
         <NavLink
+          key={index}
           label={item.label}
           active={index === active}
           onClick={e => setActive(index)}

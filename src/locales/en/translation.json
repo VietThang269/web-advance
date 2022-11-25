@@ -4,5 +4,7 @@
   "logout": "Logout",
   "login": "Login",
   "username": "Username",
-  "password": "Mật khẩu"
+  "password": "Password",
+  "validateUsername": "Username cannot be empty",
+  "validatePassword": "Password cannot be empty"
 }
