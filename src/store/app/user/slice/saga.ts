@@ -1,12 +1,4 @@
-import {
-  call,
-  put,
-  takeLatest,
-  select,
-  take,
-  fork,
-  delay,
-} from 'redux-saga/effects';
+import { call, put, take, fork } from 'redux-saga/effects';
 import { userActions } from '.';
 import { PayLoadUser } from './types';
 import axios from 'axios';

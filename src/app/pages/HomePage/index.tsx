@@ -1,9 +1,6 @@
-import i18next from 'i18next';
-import { i18n } from 'locales/i18n';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from 'app/components/Header';
 import Navbar from 'app/components/Navbar';
 import { AppShell, Text } from '@mantine/core';
@@ -12,7 +9,6 @@ import Footer from 'app/components/Footer';
 export function HomePage() {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false);
-  const dispatch = useDispatch();
 
   const changeLanguage = () => {
     i18n.changeLanguage('en');

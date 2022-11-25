@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Burger,
   Button,
   Flex,
   Header as HeaderApp,
   MediaQuery,
-  Text,
   Title,
 } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +19,7 @@ interface Props {
 }
 
 export default function Header(props: Props) {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const user = useSelector(selectorUser);
   const { actions } = useUserSlice();
   const dispatch = useDispatch();

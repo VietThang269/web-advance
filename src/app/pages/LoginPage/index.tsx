@@ -5,23 +5,19 @@ import {
   Container,
   Flex,
   Loader,
-  Notification,
   PasswordInput,
   Text,
   TextInput,
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import axios from 'axios';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { useInjectSaga } from 'redux-injectors';
 import { userActions, useUserSlice } from 'store/app/user/slice';
 import { selectorUser } from 'store/app/user/slice/selector';
 import { PayLoadUser } from 'store/app/user/slice/types';
-import styled from 'styled-components';
 
 export function LoginPage() {
   const { t } = useTranslation();
