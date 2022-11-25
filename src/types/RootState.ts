@@ -1,6 +1,6 @@
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
-import { User } from 'store/app/user/types';
+import { UserState } from 'store/app/user/slice/types';
 
 /* 
   Because the redux-injectors injects your reducers asynchronously somewhere in your code
@@ -8,5 +8,5 @@ import { User } from 'store/app/user/types';
 */
 export interface RootState {
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
-  user?: User;
+  user?: UserState;
 }

@@ -1,3 +1,8 @@
 {
-  "title": "welcome"
+  "title": "welcome",
+  "content": "Content",
+  "logout": "Logout",
+  "login": "Login",
+  "username": "Username",
+  "password": "Mật khẩu"
 }

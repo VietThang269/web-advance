@@ -11,11 +11,16 @@ import Footer from 'app/components/Footer';
 
 export function HomePage() {
   const { t, i18n } = useTranslation();
+  const [open, setOpen] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
   const changeLanguage = () => {
     i18n.changeLanguage('vi');
   };
+
+  React.useEffect(() => {
+    changeLanguage();
+  }, []);
 
   return (
     <>
@@ -25,9 +30,10 @@ export function HomePage() {
       </Helmet>
 
       <AppShell
+        navbarOffsetBreakpoint="sm"
         padding="md"
-        navbar={<Navbar />}
-        header={<Header />}
+        navbar={<Navbar open={open} />}
+        header={<Header open={open} setOpen={setOpen} />}
         footer={<Footer />}
         styles={theme => ({
           main: {
@@ -39,7 +45,7 @@ export function HomePage() {
         })}
       >
         {/* Your application here */}
-        <Text>Content</Text>
+        <Text>{t('content')}</Text>
       </AppShell>
     </>
   );

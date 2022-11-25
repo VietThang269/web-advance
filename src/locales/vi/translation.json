@@ -1,3 +1,8 @@
 {
-  "title": "Chào mừng"
+  "title": "Chào mừng",
+  "content": "Nội dung",
+  "logout": "Đăng xuất",
+  "login": "Đăng nhập",
+  "username": "Tên đăng nhập",
+  "password": "Mật khẩu"
 }
