@@ -1,4 +1,4 @@
-import { call, put, take, fork } from 'redux-saga/effects';
+import { call, put, take, fork, takeEvery } from 'redux-saga/effects';
 import { userActions } from '.';
 import { PayLoadUser } from './types';
 import axios from 'axios';
@@ -13,8 +13,10 @@ function* handleLogin(payload: PayLoadUser) {
     if (response.data.data) {
       localStorage.setItem('user', JSON.stringify(response.data));
       yield put(userActions.loginSuccess(response.data));
+      return userActions.loginSuccess.type;
     } else {
       yield put(userActions.loginFailure(response.data));
+      return userActions.loginFailure.type;
     }
   } catch (error) {
     // yield put(userActions.loginFailure(data));
@@ -27,18 +29,14 @@ function* handleLogout() {
 
 function* watchLoginFlow() {
   while (true) {
-    const user = Boolean(localStorage.getItem('user'));
-    console.log('before ', user);
-
-    if (!user) {
-      console.log('LOGIN SAGA');
-      const action: PayloadAction<PayLoadUser> = yield take(
-        userActions.loginRequest.type,
-      );
-      yield fork(handleLogin, action.payload);
+    const action: PayloadAction<PayLoadUser> = yield take(
+      userActions.loginRequest.type,
+    );
+    const data = yield call(handleLogin, action.payload);
+    if (data === userActions.loginSuccess.type) {
+      yield take(userActions.logout.type);
+      yield call(handleLogout);
     }
-    yield take(userActions.logout.type);
-    yield call(handleLogout);
   }
 }
 
