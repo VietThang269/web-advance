@@ -1,22 +1,13 @@
-import * as React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
-import Header from 'app/components/Header';
-import Navbar from 'app/components/Navbar';
+import React from 'react';
 import { AppShell, Text } from '@mantine/core';
+import { Helmet } from 'react-helmet-async';
+import Navbar from 'app/components/Navbar';
+import Header from 'app/components/Header';
 import Footer from 'app/components/Footer';
+import { Outlet } from 'react-router-dom';
 
-export function HomePage() {
-  const { t, i18n } = useTranslation();
+export default function HomeLayout() {
   const [open, setOpen] = React.useState<boolean>(false);
-
-  const changeLanguage = () => {
-    i18n.changeLanguage('en');
-  };
-
-  React.useEffect(() => {
-    changeLanguage();
-  }, []);
 
   return (
     <>
@@ -24,7 +15,6 @@ export function HomePage() {
         <title>HomePage</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-
       <AppShell
         navbarOffsetBreakpoint="sm"
         padding="md"
@@ -41,7 +31,8 @@ export function HomePage() {
         })}
       >
         {/* Your application here */}
-        <Text>{t('HomePage.content')}</Text>
+        {/* <Text></Text> */}
+        <Outlet />
       </AppShell>
     </>
   );

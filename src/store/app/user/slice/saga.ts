@@ -17,12 +17,11 @@ function* handleLogin(payload: PayLoadUser) {
       yield put(userActions.loginFailure(response.data));
     }
   } catch (error) {
-    // yield put(userActions.loginFailure(data));
+    // yield put(userActions.loginFailure(error));
   }
 }
 
 function* handleLogout() {
-  console.log('Logout');
   localStorage.removeItem('user');
 }
 

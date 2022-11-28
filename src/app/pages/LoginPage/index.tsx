@@ -33,9 +33,13 @@ export function LoginPage() {
 
     validate: {
       username: value =>
-        value.length < 1 ? <Text>{t('validateUsername')}</Text> : null,
+        value.length < 1 ? (
+          <Text>{t('LoginPage.validateUsername')}</Text>
+        ) : null,
       password: value =>
-        value.length < 1 ? <Text>{t('validatePassword')}</Text> : null,
+        value.length < 1 ? (
+          <Text>{t('LoginPage.validatePassword')}</Text>
+        ) : null,
     },
   });
 
@@ -67,7 +71,7 @@ export function LoginPage() {
           })}
         >
           <Title order={1} mb={'15px'}>
-            {t('login')}
+            {t('LoginPage.login')}
           </Title>
           {user?.error !== 0 && (
             <Alert
@@ -82,20 +86,20 @@ export function LoginPage() {
           <form onSubmit={form.onSubmit(handleLogin)}>
             <Flex direction={'column'} gap={'1rem'}>
               <TextInput
-                label={t('username')}
-                placeholder={t('username')}
+                label={t('LoginPage.username')}
+                placeholder={t('LoginPage.username')}
                 {...form.getInputProps('username')}
               />
               <PasswordInput
-                label={t('password')}
-                placeholder={t('password')}
+                label={t('LoginPage.password')}
+                placeholder={t('LoginPage.password')}
                 {...form.getInputProps('password')}
               />
               <Button w={'100%'} type="submit">
                 {user?.isLoading && (
                   <Loader color="white" size="sm" sx={{ marginRight: 5 }} />
                 )}
-                <Text>{t('login')}</Text>
+                <Text>{t('LoginPage.login')}</Text>
               </Button>
             </Flex>
           </form>

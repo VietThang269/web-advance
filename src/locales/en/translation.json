@@ -1,10 +1,14 @@
 {
-  "title": "welcome",
-  "content": "Content",
-  "logout": "Logout",
-  "login": "Login",
-  "username": "Username",
-  "password": "Password",
-  "validateUsername": "Username cannot be empty",
-  "validatePassword": "Password cannot be empty"
+  "HomePage": {
+    "title": "welcome",
+    "content": "Content"
+  },
+  "LoginPage": {
+    "logout": "Logout",
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "validateUsername": "Username cannot be empty",
+    "validatePassword": "Password cannot be empty"
+  }
 }

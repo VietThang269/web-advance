@@ -48,7 +48,7 @@ export default function Header(props: Props) {
         </MediaQuery>
         {user?.user?.id !== 0 ? (
           <Button variant="light" color="blue" onClick={handleLogout}>
-            {t('logout')}
+            {t('LoginPage.logout')}
           </Button>
         ) : (
           <Button
@@ -58,7 +58,7 @@ export default function Header(props: Props) {
               history('/login');
             }}
           >
-            {t('login')}
+            {t('LoginPage.login')}
           </Button>
         )}
       </Flex>

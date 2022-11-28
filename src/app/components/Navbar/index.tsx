@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar as NavbarApp, NavLink } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 interface Props {
   open: boolean;
@@ -27,12 +28,14 @@ export default function Navbar(props: Props) {
       hidden={!props.open}
     >
       {data.map((item, index) => (
-        <NavLink
-          key={index}
-          label={item.label}
-          active={index === active}
-          onClick={e => setActive(index)}
-        />
+        <Link to={`/menu${index + 1}`} style={{ textDecoration: 'none' }}>
+          <NavLink
+            key={index}
+            label={item.label}
+            active={index === active}
+            onClick={e => setActive(index)}
+          />
+        </Link>
       ))}
     </NavbarApp>
   );

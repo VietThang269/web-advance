@@ -1,10 +1,14 @@
 {
-  "title": "Chào mừng",
-  "content": "Nội dung",
-  "logout": "Đăng xuất",
-  "login": "Đăng nhập",
-  "username": "Tên đăng nhập",
-  "password": "Mật khẩu",
-  "validateUsername": "Tên đăng nhập không thể bỏ trống",
-  "validatePassword": "Mật khẩu không thể bỏ trống"
+  "HomePage": {
+    "title": "Chào mừng",
+    "content": "Nội dung"
+  },
+  "LoginPage": {
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "validateUsername": "Tên đăng nhập không thể bỏ trống",
+    "validatePassword": "Mật khẩu không thể bỏ trống"
+  }
 }
