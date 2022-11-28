@@ -1,5 +1,8 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function MenuPageTest() {
-  return <div>MenuPageTest 1</div>;
+  const { id } = useParams();
+
+  return <div>MenuPageTest {id}</div>;
 }

@@ -17,7 +17,7 @@ function* handleLogin(payload: PayLoadUser) {
       yield put(userActions.loginFailure(response.data));
     }
   } catch (error) {
-    // yield put(userActions.loginFailure(error));
+    // yield put(userActions.loginFailure(data));
   }
 }
 
@@ -28,7 +28,10 @@ function* handleLogout() {
 function* watchLoginFlow() {
   while (true) {
     const user = Boolean(localStorage.getItem('user'));
+    console.log('before ', user);
+
     if (!user) {
+      console.log('LOGIN SAGA');
       const action: PayloadAction<PayLoadUser> = yield take(
         userActions.loginRequest.type,
       );

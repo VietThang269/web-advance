@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar as NavbarApp, NavLink } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 interface Props {
   open: boolean;
@@ -19,6 +19,7 @@ const data = [
 ];
 
 export default function Navbar(props: Props) {
+  const { id } = useParams();
   const [active, setActive] = useState<number>(0);
 
   return (
@@ -28,11 +29,11 @@ export default function Navbar(props: Props) {
       hidden={!props.open}
     >
       {data.map((item, index) => (
-        <Link to={`/menu${index + 1}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/menu/${index + 1}`} style={{ textDecoration: 'none' }}>
           <NavLink
             key={index}
             label={item.label}
-            active={index === active}
+            active={index == Number(id) - 1}
             onClick={e => setActive(index)}
           />
         </Link>

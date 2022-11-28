@@ -18,8 +18,6 @@ import { useTranslation } from 'react-i18next';
 import { LoginPage } from './pages/LoginPage/Loadable';
 import MenuPageTest from './pages/MenuPageTest/MenuPageTest';
 import HomeLayout from './Layout/HomeLayout/HomeLayout';
-import MenuPageTest2 from './pages/MenuPageTest2/MenuPageTest';
-import MenuPageTest3 from './pages/MenuPageTest3/MenuPageTest';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -41,9 +39,8 @@ export function App() {
 
       <Routes>
         <Route path="/" element={<HomeLayout />}>
-          <Route path="menu1" element={<MenuPageTest />} />
-          <Route path="menu2" element={<MenuPageTest2 />} />
-          <Route path="menu3" element={<MenuPageTest3 />} />
+          <Route index element={<HomePage />} />
+          <Route path="menu/:id" element={<MenuPageTest />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/login" element={<LoginPage />}></Route>

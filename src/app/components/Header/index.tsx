@@ -7,7 +7,7 @@ import {
   MediaQuery,
   Title,
 } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectorUser } from 'store/app/user/slice/selector';
 import { useUserSlice } from 'store/app/user/slice';
@@ -33,9 +33,11 @@ export default function Header(props: Props) {
     <HeaderApp height={60} p={'10px 5%'}>
       <Flex justify={'space-between'}>
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <Title order={2} color="blue">
-            Header
-          </Title>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <Title order={2} color="blue">
+              Header
+            </Title>
+          </Link>
         </MediaQuery>
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Burger
