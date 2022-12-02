@@ -24,6 +24,8 @@ export function LoginPage() {
   const { actions } = useUserSlice();
   const user = useSelector(selectorUser);
 
+  const token = localStorage.getItem('token');
+
   const dispatch = useDispatch();
   const form = useForm({
     initialValues: {
@@ -50,7 +52,7 @@ export function LoginPage() {
 
   return (
     <>
-      {user?.user?.id !== 0 && <Navigate to={'/'} replace={true} />}
+      {token && <Navigate to={'/'} replace={true} />}
 
       <Center
         h={'100vh'}

@@ -1,45 +1,49 @@
-import { call, put, take, fork, takeEvery } from 'redux-saga/effects';
+import { selectorUser } from './selector';
+import { UserState } from 'store/app/user/slice/types';
+import {
+  call,
+  put,
+  take,
+  fork,
+  takeEvery,
+  select,
+  takeLatest,
+} from 'redux-saga/effects';
 import { userActions } from '.';
 import { PayLoadUser } from './types';
 import axios from 'axios';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-function* handleLogin(payload: PayLoadUser) {
+function* login() {
   try {
-    const response = yield call(() => {
-      return axios.post('https://ttvnapi.com/v1/login', payload);
+    const user: UserState = yield select(selectorUser);
+    const data: PayLoadUser = {
+      username: user.username,
+      password: user.password,
+    };
+
+    const response: any = yield call(() => {
+      return axios.post('https://ttvnapi.com/v1/login', data);
     });
 
+    console.log('response', response.data);
+
     if (response.data.data) {
-      localStorage.setItem('user', JSON.stringify(response.data));
+      localStorage.setItem('token', JSON.stringify(response.data.data.token));
       yield put(userActions.loginSuccess(response.data));
-      return userActions.loginSuccess.type;
     } else {
       yield put(userActions.loginFailure(response.data));
-      return userActions.loginFailure.type;
     }
   } catch (error) {
-    // yield put(userActions.loginFailure(data));
+    console.log('Error', error);
   }
 }
 
-function* handleLogout() {
-  localStorage.removeItem('user');
+function* logout() {
+  localStorage.removeItem('token');
 }
 
-function* watchLoginFlow() {
-  while (true) {
-    const action: PayloadAction<PayLoadUser> = yield take(
-      userActions.loginRequest.type,
-    );
-    const data = yield call(handleLogin, action.payload);
-    if (data === userActions.loginSuccess.type) {
-      yield take(userActions.logout.type);
-      yield call(handleLogout);
-    }
-  }
-}
-
-export default function* userSaga() {
-  yield fork(watchLoginFlow);
+export function* userSaga() {
+  yield takeLatest(userActions.loginRequest.type, login);
+  yield takeLatest(userActions.logout.type, logout);
 }

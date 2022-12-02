@@ -1,24 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
-import userSaga from './saga';
+import { userSaga } from './saga';
 import { PayLoadUser, User, UserState } from './types';
 
-// export const initialState: UserState = {
-//   user: JSON.parse(localStorage.getItem('user') || 'false') || undefined,
-//   error: 0,
-//   message: '',
-//   isLoading: false,
-// };
-
 export const initialState: UserState = {
-  user: JSON.parse(localStorage.getItem('user') || 'false') || {
-    id: 0,
-    username: '',
-    token: '',
-    role: 0,
-    status: 0,
-    createTime: 0,
-  },
+  id: 0,
+  username: '',
+  password: '',
+  token: JSON.parse(localStorage.getItem('token') || 'false') || '',
+  role: 0,
+  status: 0,
+  createTime: 0,
   error: 0,
   message: '',
   isLoading: false,
@@ -29,17 +21,24 @@ const slice = createSlice({
   initialState,
   reducers: {
     loginRequest(state, action: PayloadAction<PayLoadUser>) {
+      state.username = action.payload.username;
+      state.password = action.payload.password;
       state.isLoading = true;
     },
     loginSuccess(
       state,
       action: PayloadAction<{
-        data: User;
+        data: any;
         error: number;
         message: string;
       }>,
     ) {
-      state.user = action.payload.data;
+      state.id = action.payload.data.id;
+      state.token = action.payload.data.token;
+      state.role = action.payload.data.role;
+      state.status = action.payload.data.status;
+      state.createTime = action.payload.data.createTime;
+
       state.error = action.payload.error;
       state.message = action.payload.message;
       state.isLoading = false;
@@ -51,27 +50,20 @@ const slice = createSlice({
         message: string;
       }>,
     ) {
-      state.user = {
-        id: 0,
-        username: '',
-        token: '',
-        role: 0,
-        status: 0,
-        createTime: 0,
-      };
+      state.username = '';
+      state.password = '';
       state.error = action.payload.error;
       state.message = action.payload.message;
       state.isLoading = false;
     },
     logout(state, action: PayloadAction<string>) {
-      state.user = {
-        id: 0,
-        username: '',
-        token: '',
-        role: 0,
-        status: 0,
-        createTime: 0,
-      };
+      state.id = 0;
+      state.username = '';
+      state.password = '';
+      state.token = '';
+      state.role = 0;
+      state.status = 0;
+      state.createTime = 0;
     },
   },
 });

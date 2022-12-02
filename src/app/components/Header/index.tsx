@@ -25,6 +25,8 @@ export default function Header(props: Props) {
   const dispatch = useDispatch();
   const history = useNavigate();
 
+  const token = localStorage.getItem('token');
+
   const handleLogout = () => {
     dispatch(actions.logout('logout'));
   };
@@ -48,7 +50,7 @@ export default function Header(props: Props) {
             mr="xl"
           />
         </MediaQuery>
-        {user?.user?.id !== 0 ? (
+        {token ? (
           <Button variant="light" color="blue" onClick={handleLogout}>
             {t('LoginPage.logout')}
           </Button>
